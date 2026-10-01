@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1625" />
+    <title>INSEAD surface map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand"><span class="brand-mark">I</span><span>surface map</span></div>
+        <div class="workspace-switcher"><span class="workspace-dot"></span><span>INSEAD · production</span><span class="chevron">⌄</span></div>
+        <nav class="primary-nav" aria-label="Main navigation">
+          <button class="nav-item active" data-view="overview"><span class="nav-icon">◈</span>Overview</button>
+          <button class="nav-item" data-view="inventory"><span class="nav-icon">▦</span>Inventory</button>
+          <button class="nav-item" data-view="changes"><span class="nav-icon">↗</span>Changes</button>
+          <button class="nav-item" data-view="coverage"><span class="nav-icon">◌</span>Coverage</button>
+        </nav>
+        <div class="sidebar-label">Saved views</div>
+        <button class="saved-view"><span class="view-dot purple"></span>External services <span class="count">18</span></button>
+        <button class="saved-view"><span class="view-dot coral"></span>Needs review <span class="count">7</span></button>
+        <button class="saved-view"><span class="view-dot teal"></span>Top-level paths <span class="count">46</span></button>
+        <div class="sidebar-spacer"></div>
+        <div class="scan-status">
+          <div class="scan-status-top"><span class="pulse-dot"></span><span>Last scan</span><strong>Today, 09:42</strong></div>
+          <div class="scan-progress"><span style="width: 82%"></span></div>
+          <div class="scan-meta"><span>82% coverage</span><span>14m ago</span></div>
+        </div>
+        <div class="user-chip"><span class="avatar">AC</span><span><strong>Ankit Chawla</strong><small>Workspace owner</small></span><span class="more">•••</span></div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumbs"><span>Domains</span><span>/</span><strong>insead.edu</strong></div>
+          <div class="top-actions"><button class="icon-button" aria-label="Toggle theme">☼</button><button class="icon-button" aria-label="Notifications">♧<i></i></button><button class="help-button">?</button></div>
+        </header>
+
+        <div class="page-wrap">
+          <section class="page-heading">
+            <div><div class="eyebrow"><span class="live-dot"></span>LIVE SURFACE INVENTORY</div><h1>insead.edu</h1><p>One view of every public-facing subdomain and path across the INSEAD web estate.</p></div>
+            <div class="heading-actions"><button class="button secondary" id="exportBtn">⇩ Export CSV</button><button class="button primary" id="scanBtn"><span class="scan-icon">◎</span> Run scan</button></div>
+          </section>
+
+          <section class="metric-grid" aria-label="Inventory summary">
+            <article class="metric-card"><div class="metric-label">TOTAL SURFACES <span class="info">i</span></div><div class="metric-value" id="totalSurfaces">184</div><div class="metric-foot"><span class="trend up">↗ 12.4%</span><span>vs. last scan</span></div><div class="sparkline teal-line"><span></span></div></article>
+            <article class="metric-card"><div class="metric-label">SUBDOMAINS <span class="info">i</span></div><div class="metric-value">23</div><div class="metric-foot"><span class="trend neutral">— 0.0%</span><span>vs. last scan</span></div><div class="sparkline purple-line"><span></span></div></article>
+            <article class="metric-card"><div class="metric-label">PATHS DISCOVERED <span class="info">i</span></div><div class="metric-value">161</div><div class="metric-foot"><span class="trend up">↗ 14.1%</span><span>vs. last scan</span></div><div class="sparkline coral-line"><span></span></div></article>
+            <article class="metric-card"><div class="metric-label">HEALTHY SURFACES <span class="info">i</span></div><div class="metric-value">96.2<span class="value-unit">%</span></div><div class="metric-foot"><span class="trend down">↘ 0.8%</span><span>vs. last scan</span></div><div class="health-bar"><span style="width:96.2%"></span></div></article>
+          </section>
+
+          <section class="content-grid">
+            <div class="primary-column">
+              <article class="panel chart-panel">
+                <div class="panel-header"><div><h2>Surface growth</h2><p>Discovered endpoints over the last 30 days</p></div><div class="segmented"><button class="selected">30D</button><button>90D</button><button>1Y</button></div></div>
+                <div class="chart-wrap"><div class="y-labels"><span>200</span><span>150</span><span>100</span><span>50</span><span>0</span></div><svg id="growthChart" viewBox="0 0 660 190" role="img" aria-label="Surface growth line chart"><defs><linearGradient id="areaFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#63e2c0" stop-opacity=".22"/><stop offset="1" stop-color="#63e2c0" stop-opacity="0"/></linearGradient></defs><path class="grid-line" d="M0 15H660M0 55H660M0 95H660M0 135H660M0 175H660"/><path id="areaPath" fill="url(#areaFill)"/><path id="linePath" class="chart-line"/><circle id="chartPoint" class="chart-point" r="4"/><line id="hoverLine" class="hover-line" y1="0" y2="175"/><g class="x-labels"><text x="0" y="190">02 Sep</text><text x="146" y="190">09 Sep</text><text x="292" y="190">16 Sep</text><text x="438" y="190">23 Sep</text><text x="610" y="190">30 Sep</text></g></svg><div class="chart-tooltip" id="chartTooltip"><strong>30 Sep</strong><span>184 surfaces</span></div></div>
+                <div class="chart-legend"><span><i class="legend-dot teal"></i>All surfaces</span><span><i class="legend-dot coral"></i>Newly discovered</span><span class="chart-note">Last scan · 14m ago</span></div>
+              </article>
+
+              <article class="panel explorer-panel">
+                <div class="panel-header explorer-header"><div><h2>Surface explorer</h2><p id="resultSummary">184 surfaces · showing 8 seeded examples</p></div><div class="view-toggle"><button class="active" data-mode="all">All</button><button data-mode="subdomains">Subdomains</button><button data-mode="paths">Paths</button></div></div>
+                <div class="filter-bar"><div class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search hostnames or paths..." /></div><select id="statusFilter" aria-label="Filter by status"><option value="all">All status</option><option value="healthy">Healthy</option><option value="review">Needs review</option><option value="offline">Offline</option></select><select id="typeFilter" aria-label="Filter by surface type"><option value="all">All types</option><option value="subdomain">Subdomain</option><option value="path">Path</option></select><button class="filter-button" id="filterBtn">☷ Filters <span>3</span></button></div>
+                <div class="table-wrap"><table><thead><tr><th>Surface <span>↕</span></th><th>Type</th><th>Status</th><th>Last seen <span>↕</span></th><th>Owner</th><th></th></tr></thead><tbody id="inventoryBody"></tbody></table></div>
+                <div class="table-footer"><span id="showingLabel">Showing 8 of 184 surfaces</span><div class="pagination"><button disabled>←</button><button class="page-active">1</button><button>2</button><button>3</button><span>…</span><button>23</button><button>→</button></div></div>
+              </article>
+            </div>
+
+            <aside class="secondary-column">
+              <article class="panel distribution-panel"><div class="panel-header"><div><h2>By surface type</h2><p>Current inventory mix</p></div><button class="more-button">•••</button></div><div class="donut-wrap"><div class="donut"><div class="donut-center"><strong>184</strong><span>surfaces</span></div></div><div class="donut-legend"><div><i class="legend-dot teal"></i><span>Paths</span><strong>161</strong></div><div><i class="legend-dot purple"></i><span>Subdomains</span><strong>23</strong></div><div><i class="legend-dot coral"></i><span>New this week</span><strong>18</strong></div></div></div></article>
+              <article class="panel changes-panel"><div class="panel-header"><div><h2>Recent changes</h2><p>What moved since yesterday</p></div><button class="more-button">•••</button></div><div class="change-list"><div class="change-item"><span class="change-icon added">+</span><div><strong>/programmes/mba</strong><p>Path added to <span>www.insead.edu</span></p><small>32 min ago</small></div></div><div class="change-item"><span class="change-icon updated">↻</span><div><strong>knowledge.insead.edu</strong><p>Certificate renewed</p><small>2h ago</small></div></div><div class="change-item"><span class="change-icon review">!</span><div><strong>/events</strong><p>Response time above threshold</p><small>5h ago</small></div></div><div class="change-item"><span class="change-icon added">+</span><div><strong>/faculty-research</strong><p>Path added to <span>www.insead.edu</span></p><small>Yesterday</small></div></div></div><button class="text-button" data-view="changes">View all changes <span>→</span></button></article>
+              <article class="callout"><div class="callout-icon">⌁</div><div><strong>Keep your map fresh</strong><p>Connect a crawler to detect new surfaces and status changes automatically.</p><button class="text-button" id="connectBtn">Connect crawler <span>→</span></button></div></article>
+            </aside>
+          </section>
+          <footer class="page-footer"><span>Source: public web crawl · Seeded on 01 Oct 2026</span><span><span class="footer-dot"></span> Data is illustrative until a live crawler is connected</span></footer>
+        </div>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
